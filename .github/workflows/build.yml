@@ -3,6 +3,10 @@ on:
   push:
     tags: ["v*"]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release a mettre a jour (ex. v2.0)"
+        default: "v2.0"
 permissions:
   contents: write
 jobs:
@@ -13,11 +17,21 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt pyinstaller
+      # Version dossier (zip)
       - run: pyinstaller --noconfirm --windowed --name ReservationsPoutre --icon assets/logo.ico --add-data "assets;assets" --add-data "Livret_utilisation.pdf;." app.py
       - run: Compress-Archive -Path dist/ReservationsPoutre -DestinationPath ReservationsPoutre-windows.zip
+      # Version un seul fichier : ReservationsPoutre.exe (lien direct)
+      - run: pyinstaller --noconfirm --clean --onefile --windowed --name ReservationsPoutre --icon assets/logo.ico --add-data "assets;assets" --add-data "Livret_utilisation.pdf;." --distpath dist-onefile --workpath build-onefile app.py
+      - run: Copy-Item dist-onefile/ReservationsPoutre.exe ReservationsPoutre.exe
       - uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ReservationsPoutre-windows.zip
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          files: |
+            ReservationsPoutre.exe
+            ReservationsPoutre-windows.zip
       - uses: actions/upload-artifact@v4
-        with: { name: ReservationsPoutre-windows, path: ReservationsPoutre-windows.zip }
+        with:
+          name: ReservationsPoutre-windows
+          path: |
+            ReservationsPoutre.exe
+            ReservationsPoutre-windows.zip
