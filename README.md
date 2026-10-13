@@ -1,5 +1,15 @@
 # Réservations dans les poutres continues
 
+## Télécharger / Download
+
+**[⬇ Télécharger ReservationsPoutre.exe (Windows)](https://github.com/alaouiyoussef1996-oss/reservations-poutres/releases/latest/download/ReservationsPoutre.exe)**
+
+Double-cliquer sur `ReservationsPoutre.exe` : aucune installation, Python non requis. Si Windows affiche « Windows a protégé votre ordinateur », cliquer sur « Informations complémentaires » puis « Exécuter quand même ».
+
+Double-click `ReservationsPoutre.exe`: no installation, no Python needed. If Windows SmartScreen shows a warning, click "More info" then "Run anyway".
+
+Manuel / Manual : [Livret_utilisation.pdf](https://github.com/alaouiyoussef1996-oss/reservations-poutres/raw/main/Livret_utilisation.pdf) · Toutes les versions / All releases : [Releases](https://github.com/alaouiyoussef1996-oss/reservations-poutres/releases)
+
 Logiciel de bureau (PyQt6) : **on dessine la poutre continue, on saisit ses armatures longitudinales et transversales,
 et le logiciel montre où l'on peut faire une réservation (trémie, gaine, fourreau) sans renfort.**
 
