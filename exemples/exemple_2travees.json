@@ -1,0 +1,128 @@
+{
+  "spans": [
+    6.0,
+    5.0
+  ],
+  "support_w": [
+    300.0,
+    300.0,
+    300.0
+  ],
+  "b": 300.0,
+  "h": 600.0,
+  "code": "EC2",
+  "fck": 25.0,
+  "fyk": 500.0,
+  "cnom": 30.0,
+  "phi_t": 8.0,
+  "selfweight": true,
+  "g": [
+    20.0,
+    20.0
+  ],
+  "q": [
+    10.0,
+    10.0
+  ],
+  "bars": [
+    {
+      "face": "bot",
+      "span": 0,
+      "start": 0.0,
+      "length": 6.0,
+      "n": 4,
+      "dia": 20,
+      "row": 1
+    },
+    {
+      "face": "bot",
+      "span": 1,
+      "start": 0.0,
+      "length": 5.0,
+      "n": 4,
+      "dia": 16,
+      "row": 1
+    },
+    {
+      "face": "top",
+      "span": 0,
+      "start": 0.0,
+      "length": 11.0,
+      "n": 2,
+      "dia": 12,
+      "row": 1
+    },
+    {
+      "face": "top",
+      "span": 0,
+      "start": 4.5,
+      "length": 3.0,
+      "n": 4,
+      "dia": 16,
+      "row": 1
+    }
+  ],
+  "stirrups": [
+    {
+      "span": 0,
+      "start": 0.0,
+      "length": 1.5,
+      "dia": 8,
+      "spacing": 150,
+      "legs": 2
+    },
+    {
+      "span": 0,
+      "start": 1.5,
+      "length": 3.0,
+      "dia": 8,
+      "spacing": 200,
+      "legs": 2
+    },
+    {
+      "span": 0,
+      "start": 4.5,
+      "length": 1.5,
+      "dia": 8,
+      "spacing": 150,
+      "legs": 2
+    },
+    {
+      "span": 1,
+      "start": 0.0,
+      "length": 1.5,
+      "dia": 8,
+      "spacing": 150,
+      "legs": 2
+    },
+    {
+      "span": 1,
+      "start": 1.5,
+      "length": 2.0,
+      "dia": 8,
+      "spacing": 200,
+      "legs": 2
+    },
+    {
+      "span": 1,
+      "start": 3.5,
+      "length": 1.5,
+      "dia": 8,
+      "spacing": 150,
+      "legs": 2
+    }
+  ],
+  "openings": [
+    {
+      "xc": 2.8,
+      "a": 300.0,
+      "ho": 200.0,
+      "shape": "rect",
+      "mode": "auto",
+      "h1": 0.0,
+      "name": "R1"
+    }
+  ],
+  "hlint_min": 125.0,
+  "dist_appui": 0.0
+}
