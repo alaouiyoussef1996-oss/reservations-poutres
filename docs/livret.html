@@ -1,0 +1,219 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Livret d'utilisation – Réservations dans les poutres</title>
+<style>
+@page{size:A4;margin:16mm 14mm}
+body{font-family:Helvetica,Arial,sans-serif;font-size:10.5pt;line-height:1.45;color:#222}
+h1{font-size:26pt;margin:0 0 4pt;color:#1f4e79} h2{color:#1f4e79;border-bottom:2px solid #1f4e79;padding-bottom:3pt;margin-top:18pt;page-break-after:avoid}
+h3{margin:12pt 0 3pt;color:#333}
+img{width:100%;border:1px solid #bbb;margin:6pt 0}
+.cap{font-size:9pt;color:#666;margin-top:-3pt}
+.pb{page-break-before:always}
+table{border-collapse:collapse;width:100%;margin:6pt 0} td,th{border:1px solid #bbb;padding:3pt 6pt;text-align:left;font-size:9.5pt}
+.g{background:#2ca044;color:#fff;padding:0 6pt}.o{background:#f0961e;color:#fff;padding:0 6pt}.r{background:#d63c3c;color:#fff;padding:0 6pt}
+.box{background:#eef4fa;border-left:4px solid #1f4e79;padding:6pt 10pt;margin:8pt 0}
+</style></head><body>
+<img src="../assets/logo.png" style="width:90px;border:none;float:right;margin:0"><h1>Réservations dans les poutres</h1>
+<p><b>Livret d'utilisation</b> – logiciel de recherche des zones de réservations (trémies, fourreaux) dans une poutre continue en béton armé, Eurocode 2 ou BAEL 91.</p>
+<p style="margin:2pt 0 10pt"><b>Youssef Alaoui</b> – <a href="mailto:alaoui.youssef1996@gmail.com">alaoui.youssef1996@gmail.com</a></p>
+<div class="box">Le logiciel répond à une question : <b>« où puis-je placer une ouverture de a × h dans ma poutre, sans renfort ? »</b> Il colore la poutre en <span class="g">vert</span> (sans renfort particulier), <span class="o">orange</span> (possible avec renforts calculés) ou <span class="r">rouge</span> (impossible).</div>
+
+<h2>1. Vue d'ensemble de l'écran</h2>
+<img src="img/01_vue.png">
+<table>
+<tr><th>Zone</th><th>Rôle</th></tr>
+<tr><td>Colonne gauche (onglets)</td><td>Poutre, Appuis, Armatures longitudinales, Étriers, Réservations</td></tr>
+<tr><td>Barre du haut</td><td>Réservation d'essai : forme, dimensions, position verticale, abscisse x ; boutons d'ajout</td></tr>
+<tr><td>Centre</td><td>Élévation de la poutre <b>à l'échelle réelle</b>, bande de verdict, enveloppes M et V, longueur maximale admissible</td></tr>
+<tr><td>Colonne droite</td><td>Verdict détaillé de la réservation d'essai (efforts, treillis, linteaux, aciers à ajouter) et tableau récapitulatif</td></tr>
+</table>
+
+<h2 class="pb">2. Étape 1 – Définir la poutre</h2>
+<p>Onglet <b>Poutre</b> : méthode (Eurocode 2 / BAEL 91), largeur b, hauteur h, f<sub>ck</sub>, f<sub>yk</sub>, enrobage, poids propre, linteau minimal (125 mm) et distance minimale à l'appui (0 = h/2). Le tableau des travées donne la <b>longueur de calcul</b> de chaque travée (longueur de la poutre − appuis : les appuis sont de simples discontinuités, sans longueur dans le calcul), charges permanentes g et d'exploitation q (kN/m). Boutons <i>Ajouter une travée</i> / <i>Supprimer la dernière</i>. Les appuis peuvent aussi être <b>glissés à la souris</b> dans le dessin.</p>
+
+<p><b>Poutre en T.</b> Cocher « Poutre en T » puis donner la largeur efficace de table b<sub>f</sub> et son épaisseur h<sub>f</sub> (la table est en haut). Le poids propre, la flexion (axe neutre dans la table ou dans l'âme), le bloc comprimé et le calcul du linteau comprimé en tiennent compte sous moment positif ; sous moment négatif la table est tendue et la zone comprimée est l'âme (largeur b). Une réservation dont le haut est dans la table (h1 &lt; h<sub>f</sub>) est refusée. La ligne pointillée du dessin marque le bas de la table.</p>
+<img src="img/09_poutreT.png">
+<h2>3. Étape 2 – Largeur des appuis</h2>
+<img src="img/02_appuis.png">
+<p>Onglet <b>Appuis</b> : largeur de chaque appui (mm). Les appuis sont dessinés à leur largeur réelle, insérée entre les travées. <b>Dans le calcul ils n'ont pas de longueur</b> (discontinuité) : les longueurs de travée saisies sont les longueurs libres, et toutes les abscisses (barres, étriers, réservations) sont comptées sans les appuis. La distance minimale d'une réservation est mesurée depuis l'appui.</p>
+
+<h2 class="pb">4. Étape 3 – Armatures longitudinales</h2>
+<img src="img/03_barres.png">
+<p>Onglet <b>Armatures long.</b> : une ligne par groupe de barres : face (inf./sup.), travée, <b>début</b> (distance depuis l'axe de l'appui gauche de la travée ; négatif = avant l'appui), <b>longueur</b>, nombre n, diamètre Ø, <b>2e groupe (n, Ø) pour mélanger deux diamètres sur la même ligne</b> (ex. 4HA20 + 2HA16), lit. La colonne de droite donne l'abscisse absolue. Une barre peut déborder de la travée (chapeaux, barres continues). Alternative : outils <i>Armatures inf./sup.</i> pour tracer à la souris. Le bouton <b>Ferraillage de départ</b> génère une proposition à ajuster.</p>
+
+<h2>5. Étape 4 – Étriers par travée</h2>
+<img src="img/04_etriers.png">
+<p>Onglet <b>Étriers</b> : pour chaque travée, une ou plusieurs zones (début, longueur, Ø, espacement, brins). Exemple : T1 = HA8 e=150 sur 1,5 m, e=200 sur 3 m, e=150 sur 1,5 m. Le bouton <i>Copier la travée choisie vers toutes</i> accélère la saisie.</p>
+
+<h2 class="pb">6. Étape 5 – Tester une réservation</h2>
+<img src="img/05_essai.png">
+<p>Régler dans la barre du haut la forme (rectangle ou cercle), la longueur <i>a</i>, la hauteur <i>h</i>, la position verticale (<b>Auto</b> cherche la meilleure, <b>Centrée</b>, ou <b>Manuelle</b> avec h1 depuis la face supérieure) et l'abscisse <i>x</i> (curseur, ou simple clic dans le dessin). Le cadre pointillé « essai » montre la réservation ; la colonne de droite donne le verdict :</p>
+<table><tr><td><span class="g">Vert</span></td><td>La réservation s'inscrit dans le treillis de Mörsch (EC2, chap. 6) : aucun renfort particulier.</td></tr>
+<tr><td><span class="o">Orange</span></td><td>Possible avec renforts : le logiciel calcule les aciers à ajouter (linteaux, suspension, cadres) par la méthode des grandes réservations.</td></tr>
+<tr><td><span class="r">Rouge</span></td><td>Impossible, avec la raison (trop près d'un appui, d'une autre réservation, linteau trop mince, zone comprimée coupée, barres coupées…).</td></tr></table>
+<p>La bande colorée sous la poutre et la courbe du bas montrent, pour la dimension choisie, <b>toutes les positions admissibles</b> et la longueur maximale pour la hauteur choisie.</p>
+
+<h2 class="pb">7. Étape 6 – Ajouter plusieurs réservations</h2>
+<img src="img/06_reservations.png">
+<ol><li>Régler l'essai puis cliquer <b>➕ Ajouter à la poutre</b> : la réservation reçoit un nom (R1, R2…) et reste dessinée avec sa couleur de verdict.</li>
+<li>L'essai se repositionne automatiquement ; changer dimensions et position, ajouter la suivante, et ainsi de suite (sans limite).</li>
+<li>Les réservations déjà posées sont prises en compte : une zone trop proche d'une autre devient rouge (écart minimal = 2 × la plus grande hauteur).</li>
+<li>L'onglet <b>Réservations</b> liste toutes les réservations (modifiables dans le tableau) ; le tableau récapitulatif est en bas de la colonne de droite.</li></ol>
+
+<h2>8. Modifier ou supprimer une réservation</h2>
+<img src="img/07_selection.png">
+<p>Cliquer sur une réservation dans le dessin ou sur sa ligne du tableau : elle est sélectionnée et la barre du haut permet de la déplacer ou de la redimensionner. <b>Supprimer</b> l'enlève ; <b>Nouvelle (désélectionner)</b> revient à l'essai libre.</p>
+
+<h2 class="pb">9. Échelle réelle et zoom</h2>
+<img src="img/08_zoom.png">
+<p>L'option <b>Échelle réelle (x = y)</b> dessine la poutre avec la même échelle en longueur et en hauteur (h = 600 mm reste proportionné à 6 m de portée). <b>Zoom +/−</b> et <b>Ajuster</b> agrandissent le dessin, avec défilement horizontal.</p>
+
+<h2>10. Enregistrer et exporter</h2>
+<p>Menu <b>Fichier</b> : ouvrir / enregistrer le projet (.json, avec armatures, appuis et réservations), exporter le dessin en PNG, exporter le rapport en HTML.</p>
+
+<h2>11. Menu Aide, contact et téléchargements</h2>
+<img src="img/10_apropos.png" style="width:55%">
+<p>Menu <b>Aide</b> : manuel PDF, <b>téléchargement du code source</b> (zip), <b>téléchargement de l'exécutable Windows</b> (GitHub Releases), page du projet et <b>À propos / Contact</b> (auteur : Youssef Alaoui, alaoui.youssef1996@gmail.com). Le contact s'affiche aussi en bas à droite de la fenêtre et dans la note de calcul HTML exportée.</p>
+<h2>12. Hypothèses et limites</h2>
+<ul><li>Poutre rectangulaire, charges uniformément réparties, calcul ELU 1,35G + 1,5Q (tous les cas de charge par travée).</li>
+<li>Critère vert : treillis de Mörsch (« Les grandes réservations dans les poutres », chap. 5-6). Critère orange : méthode des linteaux (BAEL 91 exercice 4, adaptée à l'Eurocode 2).</li>
+<li>Ancrage des armatures, ELS et flèche non vérifiés. <b>Résultats indicatifs : à valider par l'ingénieur.</b></li></ul>
+
+<h2 class="pb">Annexe – Principe théorique du calcul</h2>
+<p>Cette annexe décrit ce que le logiciel calcule réellement. Notation : <i>b</i>, <i>h</i> (largeur, hauteur), <i>d</i> (hauteur utile), <i>f<sub>cd</sub></i> = f<sub>ck</sub>/1,5 (EC2, α<sub>cc</sub> = 1) ou 0,85 f<sub>c28</sub>/1,5 (BAEL), <i>f<sub>yd</sub></i> = f<sub>yk</sub>/1,15. Unités internes : mm, N, MPa.</p>
+
+<h3>A. Efforts dans la poutre continue</h3>
+<ul>
+<li><b>Modèle :</b> poutre à inertie constante sur appuis simples ; les appuis sont des discontinuités sans longueur, la longueur de calcul de chaque travée est celle saisie.</li>
+<li><b>Méthode des rotations</b> (équations de pente-flèche) : pour chaque combinaison, rotations des appuis θ solution de K·θ = −F avec K<sub>jj</sub> = Σ 4/L, K<sub>j,j±1</sub> = 2/L, F = ± w L²/12 ; moments d'extrémité M<sub>ab</sub> = (2/L)(2θ<sub>a</sub> + θ<sub>b</sub>) − wL²/12 (et symétrique).</li>
+<li><b>Combinaisons ELU :</b> 1,35 G + 1,5 Q, avec Q appliquée ou non sur chaque travée (2<sup>n</sup> cas, n ≤ 8). Le poids propre (25 kN/m³, table comprise pour une poutre en T) s'ajoute à G.</li>
+<li><b>Enveloppes</b> M<sub>max</sub>(x), M<sub>min</sub>(x), V<sub>max</sub>(x), V<sub>min</sub>(x) : M(x) = M<sub>a</sub> + V<sub>0</sub>x − wx²/2. Les mêmes combinaisons sont calculées à l'ELS (1,0 G + 1,0 Q) pour obtenir γ = M<sub>u</sub>/M<sub>s</sub>, utilisé par le BAEL.</li>
+<li><b>Sollicitations d'une réservation :</b> sur la fenêtre [x − a/2 ; x + a/2], le logiciel retient les couples (M, V, γ) les plus défavorables : M max, M min, V max et |M| max.</li>
+</ul>
+
+<h3>B. Flexion globale de la section pleine</h3>
+<p>Avec les aciers tendus réellement présents dans la fenêtre (section A<sub>s</sub> et profondeur du centre de gravité, calculées avec les diamètres saisis) :</p>
+<p>μ = M / (b d² f<sub>cd</sub>) ; ξ = 1,25 (1 − √(1 − 2μ)) ; x<sub>u</sub> = ξ d ; z = d (1 − 0,4 ξ) ; <b>F = M / z</b> (effort dans chaque membrure).</p>
+<ul>
+<li>Limite μ<sub>lim</sub> : 0,372 (EC2) ; BAEL : μ<sub>lu</sub> = (3220 γ + 51 f<sub>c28</sub> − 3100)·10<sup>−4</sup>. Au-delà, un acier comprimé est ajouté (σ<sub>sc</sub> = f<sub>yd</sub> en EC2, formule du BAEL sinon). Si μ &gt; 0,5, la section de poutre est jugée insuffisante.</li>
+<li><b>Poutre en T</b> (M &gt; 0, table comprimée) : si 0,8 x<sub>u</sub> ≤ h<sub>f</sub> (calculé avec b<sub>f</sub>), la section se calcule comme un rectangle de largeur b<sub>f</sub>. Sinon, la table reprend M<sub>f</sub> = (b<sub>f</sub> − b) h<sub>f</sub> f<sub>cd</sub> (d − h<sub>f</sub>/2) et l'âme (largeur b) le reste ; F = (b<sub>f</sub> − b) h<sub>f</sub> f<sub>cd</sub> + F<sub>âme</sub>. Sous M &lt; 0, la table est tendue : section de largeur b.</li>
+</ul>
+
+<h3>C. Critère « sans renfort » (zone verte) : treillis de Mörsch</h3>
+<p>Source : « Les grandes réservations dans les poutres », chap. 5-6. La poutre fissurée fonctionne comme un treillis : membrures comprimée et tendue, bielles inclinées de compression, montants tendus (étriers). Une petite ouverture qui laisse passer ce treillis ne demande aucun renfort.</p>
+<ul>
+<li><b>Épaisseur verticale de bielle :</b> a<sub>v</sub> = 2 V / (b σ<sub>lim</sub>), avec σ<sub>lim</sub> = 0,85 ν′ f<sub>cd</sub>, ν′ = 1 − f<sub>ck</sub>/250 (EC2) ou 0,8 f<sub>c28</sub>/1,5 (BAEL).</li>
+<li><b>Marges :</b> côté comprimé 0,4 x<sub>u</sub> + max(0,6 x<sub>u</sub> ; a<sub>v</sub>) ; côté tendu 2 (h − d).</li>
+<li><b>Hauteur d'inscription :</b> h<sub>w</sub> = h − marge tendue − marge comprimée.</li>
+<li><b>Condition :</b> rectangle a × h<sub>o</sub> : a + h<sub>o</sub> ≤ h<sub>w</sub> ; cercle de diamètre Ø : Ø ≤ (2 − √2) h<sub>w</sub> ≈ 0,586 h<sub>w</sub> ; et l'ouverture doit rester entre les deux marges.</li>
+<li><b>Armatures de suspension :</b> la composante verticale du treillis impose A<sub>sw</sub> ≥ V / f<sub>yd</sub> d'étriers dans une largeur h<sub>w</sub> autour de l'ouverture. Si les étriers en place suffisent : <span class="g">vert</span> ; sinon renfort d'étriers (orange).</li>
+</ul>
+
+<h3>D. Grandes ouvertures : méthode des linteaux (zone orange)</h3>
+<p>Source : BAEL 91, chap. 11 (méthode des linteaux), adaptée à l'Eurocode 2 pour les résistances. La poutre est découpée au droit de l'ouverture en deux « linteaux » (haut h<sub>1</sub>, bas h<sub>2</sub>) qui se comportent chacun comme une petite poutre.</p>
+<ol>
+<li><b>Flexion d'ensemble :</b> le moment M est repris par un couple F = M/z. Le linteau comprimé reçoit N = +F à 0,4 x<sub>u</sub> de sa fibre comprimée ; le linteau tendu reçoit N = −F au niveau des aciers tendus. Le bloc comprimé 0,8 x<sub>u</sub> doit tenir dans le linteau comprimé, sinon la zone comprimée est recoupée (rouge).</li>
+<li><b>Effort tranchant :</b> réparti entre les linteaux proportionnellement à leur rigidité : V<sub>i</sub> = V h<sub>i</sub>³ / (h<sub>1</sub>³ + h<sub>2</sub>³) (ou proportionnel à h<sub>i</sub> si a &lt; max(h<sub>1</sub>, h<sub>2</sub>)).</li>
+<li><b>Moments d'extrémité :</b> chaque linteau est une poutre à double encastrement élastique de portée a : M<sub>i</sub> = M<sub>0</sub> ± V<sub>i</sub> a / 2, avec M<sub>0</sub> = N · e (excentricité de N par rapport à l'axe du linteau).</li>
+<li><b>Ferraillage de chaque linteau</b> en flexion composée : le moment est ramené aux aciers tendus (M<sub>A</sub> = M + N (d − h/2)), puis μ, ξ, z donnent A<sub>s</sub> = M<sub>A</sub>/(z f<sub>yd</sub>) − N/f<sub>yd</sub>. Si le linteau est entièrement tendu (excentricité entre les aciers), A<sub>haut</sub> = |N|(e<sub>0</sub> − y<sub>b</sub>)/(L f<sub>yd</sub>) et A<sub>bas</sub> = |N|(y<sub>t</sub> − e<sub>0</sub>)/(L f<sub>yd</sub>). L'acier à <b>ajouter</b> = besoin − acier présent (face extérieure) ; face de la réservation : tout le besoin.</li>
+<li><b>Effort tranchant des linteaux :</b> EC2 : V<sub>Rd,max</sub> = b z ν<sub>1</sub> f<sub>cd</sub>/2 (bielle écrasée = rouge) et V<sub>Rd,c</sub> ; au-delà de V<sub>Rd,c</sub>, cadres A<sub>sw</sub>/s = V<sub>i</sub>/(z f<sub>yd</sub>). BAEL : τ<sub>u</sub> = V<sub>i</sub>/(b d) ≤ min(0,2 f<sub>c28</sub>/γ<sub>b</sub> ; 5 MPa), cadres A<sub>t</sub>/s<sub>t</sub> avec le coefficient k qui tient compte de l'effort normal N.</li>
+<li><b>Limites :</b> aciers &gt; 4 % de la section d'un linteau, section insuffisante (μ &gt; 0,5) ou bielle écrasée : rouge.</li>
+<li><b>Suspension :</b> étriers V/f<sub>yd</sub> de part et d'autre de l'ouverture (largeur de bielle a<sub>v</sub>). Étriers manquants = à ajouter.</li>
+<li><b>Table (poutre en T) :</b> le linteau comprimé, quand h<sub>1</sub> ≥ h<sub>f</sub>, est dimensionné en T.</li>
+</ol>
+
+<h3>E. Règles géométriques (rouge)</h3>
+<ul>
+<li>ouverture hors de la poutre ; ouverture dans la table (h<sub>1</sub> &lt; h<sub>f</sub>) ;</li>
+<li>linteau inférieur au minimum (125 mm par défaut) ;</li>
+<li>trop près d'un appui (distance mini par défaut h/2, mesurée depuis l'appui) ;</li>
+<li>trop près d'une autre réservation : écart entre bords &lt; 2 × la plus grande hauteur ;</li>
+<li>armature longitudinale recoupée par l'ouverture (avec son diamètre réel, enrobage compris).</li>
+</ul>
+
+<h3>F. Verdict, balayage et courbes</h3>
+<ul>
+<li><b>Verdict :</b> <span class="g">vert</span> = critère du treillis satisfait et étriers suffisants ; <span class="o">orange</span> = faisable avec renforts calculés (linteaux ou suspension) ; <span class="r">rouge</span> = une règle ou une vérification échoue. La combinaison de sollicitations la plus défavorable décide.</li>
+<li><b>Position verticale « Auto » :</b> le logiciel essaie plusieurs hauteurs h<sub>1</sub> (centrée sur la fenêtre du treillis, centrée, et 7 positions réparties) et retient la meilleure.</li>
+<li><b>Bande de verdict :</b> la réservation d'essai est vérifiée tous les 5 cm le long de la poutre.</li>
+<li><b>Courbes de longueur / hauteur maximales :</b> recherche par dichotomie (7 itérations) de la plus grande dimension encore admissible en chaque point (pas 10 cm).</li>
+</ul>
+
+<h3>G. Ce que le calcul ne fait pas</h3>
+<ul>
+<li>Pas de vérification d'ancrage ni de recouvrement des armatures, pas d'ELS (fissuration, flèche) ni de torsion.</li>
+<li>Charges uniformément réparties uniquement ; section rectangulaire ou en T ; EI constant.</li>
+<li>La méthode des linteaux est celle du BAEL ; son adaptation aux résistances de l'Eurocode 2 n'est pas tirée d'un chapitre EC2 dédié.</li>
+<li>Les réservations voisines sont vérifiées indépendamment (règle d'espacement forfaitaire).</li>
+<li><b>Résultats indicatifs, à valider par l'ingénieur structure.</b></li>
+</ul>
+
+<h2 class="pb">Annexe B – Formules détaillées et exemple chiffré</h2>
+<p>Numérotation (E1)… utilisée dans l'exemple. Notations : f<sub>cd</sub> = f<sub>ck</sub>/γ<sub>c</sub> (EC2) ou 0,85 f<sub>c28</sub>/γ<sub>b</sub> (BAEL), γ<sub>c</sub> = 1,5 ; f<sub>yd</sub> = f<sub>yk</sub>/1,15 ; d = h − d′ où d′ = profondeur du centre de gravité des aciers tendus mesurée depuis leur face : <b>d′ = enrobage + Ø étrier + Ø/2 + (lit − 1)(Ø + max(Ø ; 25 mm))</b>. Pour une ligne à deux diamètres, Ø est le plus gros des deux et A = Σ n<sub>i</sub> π Ø<sub>i</sub>²/4.</p>
+
+<h3>1. Efforts (poutre continue)</h3>
+<table>
+<tr><td>(E1)</td><td>Charge ELU de la travée j : w<sub>j</sub> = 1,35 (g<sub>j</sub> + p<sub>p</sub>) + 1,5 q<sub>j</sub> ou 1,35 (g<sub>j</sub> + p<sub>p</sub>) si Q est absente ; p<sub>p</sub> = 25 [b h + (b<sub>f</sub> − b) h<sub>f</sub>] (kN/m, dimensions en m)</td></tr>
+<tr><td>(E2)</td><td>Rotations : K θ = −F, avec K<sub>jj</sub> = 4/L<sub>j</sub> + 4/L<sub>j−1</sub>, K<sub>j,j+1</sub> = 2/L<sub>j</sub>, F<sub>j</sub> = −w<sub>j</sub>L<sub>j</sub>²/12 + w<sub>j−1</sub>L<sub>j−1</sub>²/12 (EI = 1, appuis sans tassement)</td></tr>
+<tr><td>(E3)</td><td>Moments d'extrémité de la travée : M<sub>ab</sub> = (2/L)(2θ<sub>a</sub> + θ<sub>b</sub>) − wL²/12 ; M<sub>ba</sub> = (2/L)(2θ<sub>b</sub> + θ<sub>a</sub>) + wL²/12</td></tr>
+<tr><td>(E4)</td><td>Moment sagging positif dans la travée : M(x) = M<sub>ab</sub> + V<sub>0</sub> x − w x²/2, avec V<sub>0</sub> = (M(L) − M(0) + wL²/2)/L et M(L) = −M<sub>ba</sub> ; V(x) = V<sub>0</sub> − w x</td></tr>
+<tr><td>(E5)</td><td>Enveloppes : M<sub>max</sub>(x), M<sub>min</sub>(x), V<sub>max</sub>(x), V<sub>min</sub>(x) sur les 2<sup>n</sup> dispositions de Q ; γ(x) = M<sub>u</sub>(x)/M<sub>s</sub>(x) pour le même cas (M<sub>s</sub> avec 1,0 G + 1,0 Q)</td></tr>
+</table>
+
+<h3>2. Flexion simple de la section pleine</h3>
+<table>
+<tr><td>(F1)</td><td>μ = M / (b d² f<sub>cd</sub>) &nbsp;(b → b<sub>f</sub> si la table est comprimée et que 0,8 x<sub>u</sub> ≤ h<sub>f</sub>)</td></tr>
+<tr><td>(F2)</td><td>ξ = 1,25 (1 − √(1 − 2μ)) ; x<sub>u</sub> = ξ d ; z = d (1 − 0,4 ξ)</td></tr>
+<tr><td>(F3)</td><td>μ ≤ μ<sub>lim</sub> : F = M / z &nbsp;|&nbsp; μ &gt; μ<sub>lim</sub> : F = M<sub>lim</sub>/z<sub>lim</sub> + (M − M<sub>lim</sub>)/(d − d<sub>c</sub>), M<sub>lim</sub> = μ<sub>lim</sub> b d² f<sub>cd</sub> (d<sub>c</sub> = profondeur des aciers comprimés)</td></tr>
+<tr><td>(F4)</td><td>μ<sub>lim</sub> = 0,372 (EC2) ; μ<sub>lim</sub> = (3220 γ + 51 f<sub>c28</sub> − 3100) / 10⁴, borné à [0,2 ; 0,372], f<sub>c28</sub> ≤ 30 MPa (BAEL)</td></tr>
+<tr><td>(F5)</td><td>Acier comprimé nécessaire : A′ = (M − M<sub>lim</sub>) / ((d − d<sub>c</sub>) σ<sub>sc</sub>) ; σ<sub>sc</sub> = f<sub>yd</sub> (EC2) ; σ<sub>sc</sub> = 9 γ f<sub>c28</sub> − δ′ (13 f<sub>c28</sub> + 415), borné à [0,4 f<sub>yd</sub> ; f<sub>yd</sub>], δ′ = d<sub>c</sub>/d (BAEL)</td></tr>
+<tr><td>(F6)</td><td>Poutre en T, 0,8 x<sub>u</sub> &gt; h<sub>f</sub> : M<sub>f</sub> = (b<sub>f</sub> − b) h<sub>f</sub> f<sub>cd</sub> (d − h<sub>f</sub>/2) ; l'âme prend M − M<sub>f</sub> (formules F1-F3 avec b) ; F = (b<sub>f</sub> − b) h<sub>f</sub> f<sub>cd</sub> + F<sub>âme</sub> ; z = M/F</td></tr>
+</table>
+
+<h3>3. Critère du treillis (vert)</h3>
+<table>
+<tr><td>(T1)</td><td>a<sub>v</sub> = 2 V / (b σ<sub>lim</sub>) ; σ<sub>lim</sub> = 0,85 (1 − f<sub>ck</sub>/250) f<sub>cd</sub> (EC2) ; σ<sub>lim</sub> = 0,8 f<sub>c28</sub>/γ<sub>b</sub> (BAEL)</td></tr>
+<tr><td>(T2)</td><td>m<sub>c</sub> = 0,4 x<sub>u</sub> + max(0,6 x<sub>u</sub> ; a<sub>v</sub>) &nbsp;(côté comprimé) ; m<sub>t</sub> = 2 (h − d) &nbsp;(côté tendu)</td></tr>
+<tr><td>(T3)</td><td>h<sub>w</sub> = h − m<sub>c</sub> − m<sub>t</sub></td></tr>
+<tr><td>(T4)</td><td>Rectangle : a + h<sub>o</sub> ≤ h<sub>w</sub> ; cercle : Ø ≤ (2 − √2) h<sub>w</sub> ; position : h<sub>1</sub> ≥ marge haute et h<sub>1</sub> + h<sub>o</sub> ≤ h − marge basse (M &lt; 0 : m<sub>c</sub> et m<sub>t</sub> permutés)</td></tr>
+<tr><td>(T5)</td><td>Suspension : A<sub>sw,req</sub> = V / f<sub>yd</sub> ; A<sub>sw,exist</sub> = Σ (nombre de cours d'étriers dans une fenêtre de largeur max(h<sub>w</sub>, a, 100 mm) centrée sur l'ouverture) × brins × π Ø²/4</td></tr>
+</table>
+
+<h3>4. Méthode des linteaux (orange)</h3>
+<table>
+<tr><td>(L1)</td><td>Linteau comprimé : h<sub>c</sub> ; linteau tendu : h<sub>t</sub> (M &gt; 0 : h<sub>c</sub> = h<sub>1</sub>, h<sub>t</sub> = h<sub>2</sub> ; M &lt; 0 : inversés). Condition : 0,8 x<sub>u</sub> ≤ h<sub>c</sub></td></tr>
+<tr><td>(L2)</td><td>Effort normal : N<sub>c</sub> = +F à e<sub>c</sub> = h<sub>c</sub>/2 − 0,4 x<sub>u</sub> au-dessus du centre du linteau ; N<sub>t</sub> = −F à e<sub>t</sub> = −(h<sub>t</sub>/2 − d′) (au niveau des aciers tendus)</td></tr>
+<tr><td>(L3)</td><td>Tranchant : V<sub>c</sub> = V h<sub>c</sub>³/(h<sub>c</sub>³ + h<sub>t</sub>³) si a ≥ max(h<sub>1</sub>, h<sub>2</sub>) ; sinon V<sub>c</sub> = V h<sub>c</sub>/(h<sub>c</sub> + h<sub>t</sub>) ; V<sub>t</sub> = V − V<sub>c</sub></td></tr>
+<tr><td>(L4)</td><td>Moments : M<sub>0</sub> = N · e ; M<sub>ext</sub> = M<sub>0</sub> ± V<sub>i</sub> a / 2 (les deux extrémités sont dimensionnées)</td></tr>
+<tr><td>(L5)</td><td>Flexion composée : M<sub>A</sub> = M<sub>ext</sub> + N (d<sub>i</sub> − h<sub>i</sub>/2) ; μ, ξ, z comme (F1-F2) avec d<sub>i</sub> = h<sub>i</sub> − d′<sub>i</sub> ; A = M<sub>A</sub>/(z f<sub>yd</sub>) − N/f<sub>yd</sub> (compression : N &gt; 0)</td></tr>
+<tr><td>(L6)</td><td>Section entièrement tendue (e<sub>0</sub> = M/N entre les nappes, avec y<sub>b</sub> = −(h/2 − d′<sub>bas</sub>), y<sub>t</sub> = h/2 − d′<sub>haut</sub>) : A<sub>haut</sub> = |N| (e<sub>0</sub> − y<sub>b</sub>) / ((y<sub>t</sub> − y<sub>b</sub>) f<sub>yd</sub>) ; A<sub>bas</sub> = |N| (y<sub>t</sub> − e<sub>0</sub>) / ((y<sub>t</sub> − y<sub>b</sub>) f<sub>yd</sub>)</td></tr>
+<tr><td>(L7)</td><td>Acier à ajouter : face extérieure = max(0 ; A<sub>requis</sub> − A<sub>en place</sub>) ; face de l'ouverture = A<sub>requis</sub>. Limite : A<sub>haut</sub> + A<sub>bas</sub> ≤ 0,04 b h<sub>i</sub></td></tr>
+<tr><td>(L8)</td><td>EC2 : z<sub>i</sub> = 0,9 d<sub>i</sub> ; V<sub>Rd,max</sub> = b z<sub>i</sub> ν<sub>1</sub> f<sub>cd</sub>/2, ν<sub>1</sub> = 0,6 (1 − f<sub>ck</sub>/250) ; V<sub>Rd,c</sub> = [max(0,18 k (100 ρ f<sub>ck</sub>)<sup>1/3</sup>/γ<sub>c</sub> ; v<sub>min</sub>) + 0,15 σ<sub>cp</sub>] b d<sub>i</sub> (linteau comprimé seulement ; k = min(1 + √(200/d<sub>i</sub>) ; 2) ; ρ = min(A/(b d<sub>i</sub>) ; 0,02) ; v<sub>min</sub> = 0,035 k<sup>3/2</sup> √f<sub>ck</sub> ; σ<sub>cp</sub> = N/(b h<sub>i</sub>) ≤ 0,2 f<sub>cd</sub>). Si V<sub>i</sub> &gt; V<sub>Rd,c</sub> (ou linteau tendu) : A<sub>sw</sub>/s = V<sub>i</sub> / (z<sub>i</sub> f<sub>yd</sub>)</td></tr>
+<tr><td>(L9)</td><td>BAEL : τ<sub>u</sub> = V<sub>i</sub>/(b d<sub>i</sub>) ≤ min(0,2 f<sub>c28</sub>/γ<sub>b</sub> ; 5 MPa) ; A<sub>t</sub>/s<sub>t</sub> = γ<sub>s</sub> b (τ<sub>u</sub> − 0,3 f<sub>t28</sub> k) / (0,9 f<sub>e</sub>) avec f<sub>t28</sub> = min(0,6 + 0,06 f<sub>c28</sub> ; 3,3) ; k = 1 + 3 σ<sub>N</sub>/f<sub>c28</sub> (compression) ou 1 − 10 |σ<sub>N</sub>|/f<sub>c28</sub> (traction), σ<sub>N</sub> = N/(b h<sub>i</sub>)</td></tr>
+<tr><td>(L10)</td><td>Suspension de part et d'autre : A<sub>sw,req</sub> = V/f<sub>yd</sub> sur une largeur max(a<sub>v</sub> ; 100 mm) à gauche et à droite ; ajout = max(0 ; req − en place<sub>g</sub>) + max(0 ; req − en place<sub>d</sub>)</td></tr>
+</table>
+
+<h3>5. Exemple chiffré (projet de démonstration)</h3>
+<p>Poutre 300 × 600, C25, f<sub>yk</sub> = 500 MPa, enrobage 30 mm, étriers Ø8 (d′ = 30 + 8 + 10 = 48 mm pour HA20), travées 6 m et 5 m, g = 20 et q = 10 kN/m (hors poids propre 4,5 kN/m), 4HA20 inf. en T1, étriers HA8 e = 150. Réservation rectangulaire 300 × 200 mm centrée à x = 3,00 m, position verticale « auto ». Les valeurs ci-dessous sont celles produites par le logiciel.</p>
+<table>
+<tr><th>Étape</th><th>Calcul</th><th>Résultat</th></tr>
+<tr><td>Données</td><td>f<sub>cd</sub> = 25/1,5 ; f<sub>yd</sub> = 500/1,15</td><td>16,67 MPa ; 434,8 MPa</td></tr>
+<tr><td>Efforts sur [2,85 ; 3,15] (E1-E5)</td><td>cas le plus défavorable retenu (M &gt; 0)</td><td>M = 127,3 kN·m ; V = 38,3 kN ; γ = 1,39</td></tr>
+<tr><td>Aciers tendus</td><td>4HA20 : A = 4 × 314,2 ; d = 600 − 48</td><td>1257 mm² (12,57 cm²) ; d = 552 mm</td></tr>
+<tr><td>(F1)</td><td>μ = 127,3·10⁶ / (300 × 552² × 16,67)</td><td>0,0836 &lt; 0,372</td></tr>
+<tr><td>(F2)</td><td>ξ = 1,25 (1 − √(1 − 0,1672)) ; x<sub>u</sub> = ξ d ; z</td><td>ξ = 0,109 ; x<sub>u</sub> = 60,3 mm ; z = 527,9 mm</td></tr>
+<tr><td>(F3)</td><td>F = M/z = 127,3·10⁶ / 527,9</td><td>241,2 kN</td></tr>
+<tr><td>(T1)</td><td>σ<sub>lim</sub> = 0,85 × 0,9 × 16,67 = 12,75 MPa ; a<sub>v</sub> = 2 × 38 260 / (300 × 12,75)</td><td>a<sub>v</sub> = 20,0 mm</td></tr>
+<tr><td>(T2)-(T3)</td><td>m<sub>c</sub> = 0,4 × 60,3 + max(36,2 ; 20,0) ; m<sub>t</sub> = 2 × 48 ; h<sub>w</sub> = 600 − 96 − 60,3</td><td>m<sub>c</sub> = 60,3 ; m<sub>t</sub> = 96 ; h<sub>w</sub> = 443,7 mm</td></tr>
+<tr><td>(T4)</td><td>a + h<sub>o</sub> = 300 + 200 = 500 &gt; 443,7</td><td>Ne tient pas dans le treillis → linteaux</td></tr>
+<tr><td>Position</td><td>meilleure position trouvée</td><td>h<sub>1</sub> = 275 mm (haut), h<sub>2</sub> = 125 mm (bas)</td></tr>
+<tr><td>(L1)</td><td>0,8 x<sub>u</sub> = 48,2 mm ≤ h<sub>c</sub> = 275 mm</td><td>Zone comprimée non recoupée</td></tr>
+<tr><td>(L3)</td><td>V<sub>c</sub> = 38,26 × 275³ / (275³ + 125³) ; V<sub>t</sub> = V − V<sub>c</sub></td><td>V<sub>c</sub> = 35,0 kN ; V<sub>t</sub> = 3,3 kN</td></tr>
+<tr><td>(L2)</td><td>N<sub>c</sub> = +241,2 kN ; e<sub>c</sub> = 137,5 − 24,1 ; N<sub>t</sub> = −241,2 kN ; e<sub>t</sub> = −(62,5 − 48)</td><td>e<sub>c</sub> = 113,4 mm ; e<sub>t</sub> = −14,5 mm</td></tr>
+<tr><td>(L4)</td><td>M<sub>0,c</sub> = 241,2 × 0,1134 ; M<sub>0,t</sub> = −241,2 × (−0,0145) ; ± V<sub>i</sub> a/2 (a/2 = 150 mm)</td><td>M<sub>0,c</sub> = 27,3 (extrémités 32,6 et 22,1) ; M<sub>0,t</sub> = 3,5 kN·m</td></tr>
+<tr><td>(L5)-(L7) linteau comprimé</td><td>aciers face extérieure (haut) : 0,00 cm² requis / 2,26 cm² (2HA12) ; face de l'ouverture</td><td>à ajouter : 0,69 cm²</td></tr>
+<tr><td>(L5)-(L7) linteau tendu</td><td>face extérieure (bas) : 5,70 cm² requis / 12,57 cm² en place ; face de l'ouverture</td><td>à ajouter : 0,39 cm²</td></tr>
+<tr><td>(L8) cadres des linteaux</td><td>linteau tendu : d<sub>i</sub> = 125 − 48 = 77 ; z<sub>i</sub> = 69,3 ; A<sub>sw</sub>/s = 3285 / (69,3 × 434,8)</td><td>1,09 cm²/m (comprimé : 0)</td></tr>
+<tr><td>(L10) suspension</td><td>V/f<sub>yd</sub> = 38 260 / 434,8 = 88 mm² (0,88 cm²) ; en place : 1,01 cm² de chaque côté</td><td>suffisant</td></tr>
+<tr><td>Verdict</td><td>aciers à ajouter dans les linteaux et cadres</td><td><span class="o">Possible avec renforts</span></td></tr>
+</table>
+<p>Pour passer en <span class="g">vert</span>, il faut une ouverture plus petite : par exemple 250 × 150 (a + h<sub>o</sub> = 400 ≤ h<sub>w</sub> = 468 mm : le logiciel donne alors « sans renfort particulier »).</p>
+</body></html>
